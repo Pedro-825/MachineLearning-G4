@@ -1,0 +1,104 @@
+EXPERIMENT SUMMARY - REPRODUCIBILITY REPORT
+============================================================
+
+Title: Evaluación comparativa de modelos de aprendizaje
+       automático y aprendizaje profundo para la predicción
+       de la demanda eléctrica a corto plazo: estudio de
+       caso de Shahrekord.
+
+DATASET
+------------------------------------------------------------
+  Name:        Shahrekord Electricity Demand Dataset
+  File:        94_95_96_97_all.csv
+  Location:    Shahrekord, Iran
+  Resolution:  1 hour
+  Rows:        35,064
+  Columns:     28 (original)
+  Period:      2015-03-03 00:00 -> 2019-03-02 23:00 (synthetic)
+  Target:      Demand (MW)
+  Missing:     0
+  Duplicates:  0
+
+PROBLEM FORMULATION
+------------------------------------------------------------
+  y(t) = Load(t+1)  (next-hour demand)
+  No future information used in predictors.
+
+INDICATOR GROUPS
+------------------------------------------------------------
+  A History: 9 features (lags + rolling means)
+  B Weather: 18 features
+  C Temporal: 13 features
+  D Special: 1 features
+
+SCENARIOS
+------------------------------------------------------------
+  A: Historical (9 features)
+  B: Historical + Temporal (22 features)
+  C: Historical + Meteorological (27 features)
+  D: Full model (41 features)
+
+TEMPORAL SPLIT (complete years)
+------------------------------------------------------------
+  Train:       17,376 samples (years [1, 2])
+  Validation:  8,760 samples (years [3])
+  Test:        8,759 samples (years [4])
+
+MODELS
+------------------------------------------------------------
+  Random Forest, SVR (RBF), XGBoost, LSTM (window=24).
+  Hyperparameters tuned independently per scenario (A/B/C/D).
+  LSTM window (sequence length): 24 hours
+
+HYPERPARAMETER OPTIMIZATION (per scenario, validation year 3)
+------------------------------------------------------------
+  Scenario D (full model) selected hyperparameters:
+    Random Forest: {'n_estimators': 200, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_depth': 20}
+    SVR: {'C': 10, 'epsilon': 0.05, 'gamma': 'auto'}
+    XGBoost: {'subsample': 0.8, 'n_estimators': 400, 'max_depth': 6, 'learning_rate': 0.1, 'colsample_bytree': 1.0}
+    LSTM: {'units': 64, 'dropout': 0.2, 'dense': 32}
+
+TEMPORAL VALIDATION (rolling origin, 3 six-month test windows)
+------------------------------------------------------------
+  Random Forest  MAE=3.48+/-1.75  RMSE=5.81+/-2.80  R2=0.9800+/-0.0070
+  SVR            MAE=8.65+/-2.50  RMSE=12.52+/-4.16  R2=0.8712+/-0.1202
+  XGBoost        MAE=3.21+/-1.52  RMSE=5.12+/-2.54  R2=0.9845+/-0.0060
+  LSTM           MAE=4.43+/-2.40  RMSE=6.26+/-3.42  R2=0.9772+/-0.0105
+
+EXECUTION TIMES (scenario D, N runs)
+------------------------------------------------------------
+  LSTM           train=102.20+/-1.14s  pred=1.170+/-0.012s
+  Random Forest  train=7.99+/-0.18s  pred=0.090+/-0.011s
+  SVR            train=1.23+/-0.02s  pred=1.382+/-0.018s
+  XGBoost        train=1.70+/-0.01s  pred=0.015+/-0.000s
+
+HIGH-DEMAND THRESHOLD
+------------------------------------------------------------
+  Percentile 90 of TRAIN demand = 290.19 MW
+
+RESULTS (full model, scenario D, test set)
+------------------------------------------------------------
+  XGBoost        MAE=3.90  RMSE=6.48  R2=0.9880  MAPE=1.74%
+  Random Forest  MAE=4.16  RMSE=7.14  R2=0.9854  MAPE=1.85%
+  LSTM           MAE=5.29  RMSE=8.40  R2=0.9798  MAPE=2.31%
+  SVR            MAE=7.71  RMSE=10.90  R2=0.9660  MAPE=3.64%
+
+PERSISTENCE BASELINE (naive, test set)
+------------------------------------------------------------
+  Predict Load(t+1) = Load(t):  MAE = 8.06 MW
+
+ENVIRONMENT
+------------------------------------------------------------
+  Python:       3.12.10
+  OS:           Windows 11
+  CPU:          AMD Ryzen 5 5500U with Radeon Graphics
+  RAM:          15 GB
+  GPU:          None (CPU only)
+  N runs (times): 3
+  numpy:        2.5.2
+  pandas:       3.0.5
+  scikit-learn: 1.9.0
+  xgboost:      3.4.1
+  tensorflow:   2.21.0
+  matplotlib:   3.11.1
+  Random seed:  42

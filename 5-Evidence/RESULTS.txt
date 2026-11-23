@@ -1,0 +1,263 @@
+PS C:\Users\alexm> py -3.12 "C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\3-Experiment\experiment.py"
+========================================================================
+COMPARATIVE ML / DL EXPERIMENT - SHORT-TERM LOAD FORECASTING
+Shahrekord Electricity Demand Dataset
+========================================================================
+
+========================================================================
+CARGA DEL DATASET SHAHREKORD
+========================================================================
+Archivo: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\2-Data\shahrekord\94_95_96_97_all.csv
+Filas:   35,064
+Columnas (26):
+    - 'YEAR'
+    - 'Weekday'
+    - 'Holiday'
+    - 'Day of Month'
+    - 'Month Num'
+    - 'Hour'
+    - 'Demand'
+    - 'Load'
+    - 'Min Tem'
+    - 'Max Tem'
+    - 'avr tem'
+    - 'min hum '
+    - 'max hum'
+    - 'avr hum'
+    - 'rain'
+    - 'snow '
+    - 'T precipitation'
+    - 'snow level'
+    - 'W D 03'
+    - 'W S 03'
+    - 'W D 09'
+    - 'W S 09'
+    - 'W D 15'
+    - 'W S 15'
+    - 'max W D '
+    - 'max W S '
+
+Periodo (índice sintético): 2015-03-03 00:00:00 -> 2019-03-02 23:00:00
+Frecuencia: horaria (24 observaciones/día)
+Rango de demanda: 84.00 - 494.25 MW
+Media de demanda: 208.60 MW
+Observaciones por año:
+year
+1    8760
+2    8784
+3    8760
+4    8760
+
+========================================================================
+DIVISIÓN TEMPORAL (AÑOS COMPLETOS)
+========================================================================
+Train      (años [1, 2]): 17,376
+Validation (años [3]): 8,760
+Test       (años [4]): 8,759
+
+Umbral de alta demanda (P90 de train): 290.19 MW
+
+========================================================================
+OPTIMIZACIÓN DE HIPERPARÁMETROS (POR ESCENARIO)
+========================================================================
+Búsqueda controlada: train (años 1-2) + validación (año 3).
+El conjunto de prueba (año 4) NO participa en la selección.
+Cada escenario se optimiza de forma independiente para que la
+comparación entre escenarios aísle el efecto de cada grupo de
+variables sin asumir que la configuración óptima del modelo
+completo es igualmente adecuada para el resto de escenarios.
+
+========================================================================
+ESCENARIO A - Historical (9 features)
+========================================================================
+  [tuning] Random Forest: {'n_estimators': 300, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_depth': None} (val RMSE=6.54 MW)
+  [tuning] SVR: {'C': 1, 'epsilon': 0.05, 'gamma': 'auto'} (val RMSE=9.03 MW)
+  [tuning] XGBoost: {'subsample': 0.8, 'n_estimators': 300, 'max_depth': 8, 'learning_rate': 0.1, 'colsample_bytree': 1.0} (val RMSE=6.42 MW)
+  [tuning] LSTM: {'units': 64, 'dropout': 0.2, 'dense': 32} (val RMSE=6.02 MW)
+  Random Forest: MAE=5.42 RMSE=8.68 R2=0.978
+  SVR: MAE=6.20 RMSE=9.53 R2=0.974
+  XGBoost: MAE=5.60 RMSE=8.80 R2=0.978
+  LSTM: MAE=4.34 RMSE=6.99 R2=0.986
+
+========================================================================
+ESCENARIO B - Historical + Temporal (22 features)
+========================================================================
+  [tuning] Random Forest: {'n_estimators': 200, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_depth': 20} (val RMSE=4.44 MW)
+  [tuning] SVR: {'C': 10, 'epsilon': 0.05, 'gamma': 'scale'} (val RMSE=9.33 MW)
+  [tuning] XGBoost: {'subsample': 0.8, 'n_estimators': 400, 'max_depth': 6, 'learning_rate': 0.1, 'colsample_bytree': 1.0} (val RMSE=3.99 MW)
+  [tuning] LSTM: {'units': 64, 'dropout': 0.2, 'dense': 32} (val RMSE=4.27 MW)
+  Random Forest: MAE=4.13 RMSE=7.11 R2=0.986
+  SVR: MAE=6.85 RMSE=10.07 R2=0.971
+  XGBoost: MAE=3.89 RMSE=6.46 R2=0.988
+  LSTM: MAE=4.14 RMSE=6.92 R2=0.986
+
+========================================================================
+ESCENARIO C - Historical + Meteorological (27 features)
+========================================================================
+  [tuning] Random Forest: {'n_estimators': 300, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_depth': None} (val RMSE=6.72 MW)
+  [tuning] SVR: {'C': 1, 'epsilon': 0.05, 'gamma': 'scale'} (val RMSE=10.57 MW)
+  [tuning] XGBoost: {'subsample': 1.0, 'n_estimators': 400, 'max_depth': 8, 'learning_rate': 0.05, 'colsample_bytree': 1.0} (val RMSE=6.68 MW)
+  [tuning] LSTM: {'units': 64, 'dropout': 0.2, 'dense': 32} (val RMSE=5.56 MW)
+  Random Forest: MAE=5.58 RMSE=8.85 R2=0.978
+  SVR: MAE=7.13 RMSE=10.73 R2=0.967
+  XGBoost: MAE=5.62 RMSE=8.71 R2=0.978
+  LSTM: MAE=4.54 RMSE=7.05 R2=0.986
+
+========================================================================
+ESCENARIO D - Full model (41 features)
+========================================================================
+  [tuning] Random Forest: {'n_estimators': 200, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_depth': 20} (val RMSE=4.51 MW)
+  [tuning] SVR: {'C': 10, 'epsilon': 0.05, 'gamma': 'auto'} (val RMSE=10.60 MW)
+  [tuning] XGBoost: {'subsample': 0.8, 'n_estimators': 400, 'max_depth': 6, 'learning_rate': 0.1, 'colsample_bytree': 1.0} (val RMSE=4.06 MW)
+  [tuning] LSTM: {'units': 64, 'dropout': 0.2, 'dense': 32} (val RMSE=5.09 MW)
+  Random Forest: MAE=4.16 RMSE=7.14 R2=0.985
+  SVR: MAE=7.71 RMSE=10.90 R2=0.966
+  XGBoost: MAE=3.90 RMSE=6.48 R2=0.988
+  LSTM: MAE=5.29 RMSE=8.40 R2=0.980
+
+Reporte de optimización guardado en: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\3-Experiment\hyperparameter_tuning.csv
+
+========================================================================
+RESULTADOS POR ESCENARIO
+========================================================================
+scenario         model      MAE      RMSE       R2     MAPE  training_time  prediction_time
+       A Random Forest 5.415468  8.676856 0.978432 2.434826       5.520158         0.150975
+       A           SVR 6.198705  9.525669 0.974006 2.881123       0.403326         1.268237
+       A       XGBoost 5.599356  8.802538 0.977802 2.515915       3.653815         0.021257
+       A          LSTM 4.340029  6.986878 0.986015 1.976102     119.388460         1.217965
+       B Random Forest 4.130198  7.107916 0.985527 1.832888       6.376667         0.110414
+       B           SVR 6.854350 10.069975 0.970950 3.207874       1.475461         0.905780
+       B       XGBoost 3.885701  6.459607 0.988046 1.723373       2.017213         0.022443
+       B          LSTM 4.142053  6.915733 0.986299 1.809070     153.297584         0.986300
+       C Random Forest 5.576432  8.852733 0.977549 2.508649       7.716616         0.117015
+       C           SVR 7.127415 10.733850 0.966993 3.381047       0.715356         1.632516
+       C       XGBoost 5.623016  8.710925 0.978262 2.542519       2.410471         0.020754
+       C          LSTM 4.538446  7.049082 0.985765 2.080188     143.473765         1.206766
+       D Random Forest 4.159023  7.143364 0.985382 1.848274       8.676751         0.093997
+       D           SVR 7.711576 10.897117 0.965982 3.636518       1.391541         1.682863
+       D       XGBoost 3.902685  6.479640 0.987972 1.742074       2.199500         0.021826
+       D          LSTM 5.288312  8.402326 0.979775 2.312364     113.648035         1.386256
+
+========================================================================
+RESULTADOS PRINCIPALES (ESCENARIO D)
+========================================================================
+ rank scenario         model      MAE      RMSE       R2     MAPE  training_time  prediction_time
+    1        D       XGBoost 3.902685  6.479640 0.987972 1.742074       2.199500         0.021826
+    2        D Random Forest 4.159023  7.143364 0.985382 1.848274       8.676751         0.093997
+    3        D          LSTM 5.288312  8.402326 0.979775 2.312364     113.648035         1.386256
+    4        D           SVR 7.711576 10.897117 0.965982 3.636518       1.391541         1.682863
+
+Predicciones guardadas en: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\3-Experiment\predictions.csv
+
+========================================================================
+IMPORTANCIA DE INDICADORES (TOP 10 - PERMUTATION)
+========================================================================
+feature
+lag_0              56.128290
+hour_cos            3.384426
+hour_sin            2.550059
+hour                1.858462
+lag_1               1.708081
+rolling_mean_24     1.564399
+lag_168             0.428504
+lag_48              0.328095
+lag_24              0.298188
+day_of_year         0.284608
+
+========================================================================
+ANÁLISIS DE ALTA DEMANDA
+========================================================================
+        model  MAE_normal  RMSE_normal  MAPE_normal  MAE_high_demand  RMSE_high_demand  MAPE_high_demand  high_demand_threshold_MW  n_normal  n_high_demand
+Random Forest    3.584689     5.981769     1.772120         6.970013         11.209253          2.221000                   290.185      7273           1486
+          SVR    7.199781    10.156088     3.712247        10.216482         13.967965          3.265873                   290.185      7273           1486
+      XGBoost    3.312608     5.269958     1.657220         6.790728         10.561744          2.157382                   290.185      7273           1486
+         LSTM    4.290335     6.451513     2.122767        10.172759         14.574733          3.240318                   290.185      7273           1486
+
+========================================================================
+BASELINE DE PERSISTENCIA (NAIVE)
+========================================================================
+MAE=8.06 MW  RMSE=12.09 MW  R2=0.9581  MAPE=3.83%
+
+========================================================================
+ANÁLISIS DE VARIABLES METEOROLÓGICAS
+========================================================================
+Análisis meteorológico guardado en: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\3-Experiment\meteorological_analysis.csv
+Figura creada: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\4-Figures\Fig9_weather_correlation.png
+     variable  corr_target  corr_lag0  corr_hour_sin  corr_hour_cos  corr_month_sin  corr_month_cos  corr_day_of_year  corr_day_of_week
+      max_tem     0.786068   0.786064       0.000002       0.000067        0.613057       -0.687699          0.041512          0.005612
+      avr_tem     0.753303   0.753441      -0.000037       0.000069        0.602915       -0.658264          0.029465          0.000675
+      min_tem     0.669888   0.670119      -0.000087       0.000041        0.590759       -0.547042         -0.008236         -0.000513
+      avr_hum    -0.574253  -0.574116       0.000006      -0.000036       -0.297954        0.576153         -0.108058          0.002880
+      max_hum    -0.566699  -0.566710       0.000023       0.000035       -0.246248        0.605570         -0.164876          0.012442
+      min_hum    -0.480967  -0.480643      -0.000020      -0.000130       -0.317469        0.429964         -0.007725         -0.011232
+ max_wind_dir    -0.262413  -0.262326       0.000189       0.000150       -0.082619        0.290622         -0.082640         -0.026365
+  wind_dir_09    -0.229268  -0.229473       0.000050      -0.000129       -0.081553        0.236672         -0.082321         -0.052975
+  wind_dir_15    -0.223534  -0.223410      -0.000014       0.000113       -0.079446        0.252878         -0.047742          0.008061
+wind_speed_03    -0.162345  -0.162157      -0.000091       0.000114       -0.046255        0.195269         -0.088792         -0.016760
+
+========================================================================
+VALIDACIÓN TEMPORAL (ORIGEN MÓVIL)
+========================================================================
+Validación temporal guardada en: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\3-Experiment\temporal_validation.csv
+Resumen (media ± desv. estándar) en: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\3-Experiment\temporal_validation_summary.csv
+Figura creada: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\4-Figures\Fig10_temporal_validation.png
+        model  MAE_mean  MAE_std  RMSE_mean  RMSE_std  R2_mean   R2_std
+Random Forest  3.475548 1.752150   5.813733  2.804065 0.980028 0.007017
+          SVR  8.647449 2.496241  12.524478  4.162892 0.871156 0.120242
+      XGBoost  3.209635 1.522014   5.120038  2.541619 0.984501 0.005965
+         LSTM  4.432214 2.399733   6.255045  3.416369 0.977196 0.010496
+
+========================================================================
+TIEMPOS DE EJECUCIÓN (MEDIA ± DESV. ESTÁNDAR)
+========================================================================
+        model    tt_mean   tt_std  tp_mean   tp_std
+         LSTM 102.199585 1.140990 1.169628 0.012044
+Random Forest   7.990788 0.176437 0.090026 0.011449
+          SVR   1.231838 0.017403 1.382292 0.018466
+      XGBoost   1.696702 0.012985 0.015471 0.000256
+
+========================================================================
+GENERACIÓN DE FIGURAS
+========================================================================
+Figura creada: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\4-Figures\Fig1_methodology.png
+Figura creada: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\4-Figures\Fig2_electricity_demand.png
+Figura creada: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\4-Figures\Fig3_predictions.png
+Figura creada: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\4-Figures\Fig4_model_comparison.png
+Figura creada: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\4-Figures\Fig5_accuracy_vs_complexity.png
+Figura creada: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\4-Figures\Fig6_feature_importance.png
+Figura creada: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\4-Figures\Fig7_high_demand_error.png
+Figura creada: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\4-Figures\Fig8_feature_scenario_comparison.png
+Resumen guardado en: C:\Users\alexm\Desktop\Doc-Uni\documentos-tareas\2026-2\MachineLearning\MachineLearning-G4\3-Experiment\experiment_summary.txt
+
+========================================================================
+EXPERIMENTO FINALIZADO
+========================================================================
+Mejor modelo (escenario D, RMSE): XGBoost
+
+Archivos generados en 3-Experiment/:
+  - results.csv
+  - predictions.csv
+  - feature_importance.csv
+  - feature_scenarios_results.csv
+  - high_demand_results.csv
+  - model_configuration.csv
+  - hyperparameter_tuning.csv
+  - meteorological_analysis.csv
+  - temporal_validation.csv
+  - temporal_validation_summary.csv
+  - timing_results.csv
+  - timing_summary.csv
+  - experiment_summary.txt
+
+Figuras generadas en 4-Figures/:
+  - Fig1_methodology.png
+  - Fig2_electricity_demand.png
+  - Fig3_predictions.png
+  - Fig4_model_comparison.png
+  - Fig5_accuracy_vs_complexity.png
+  - Fig6_feature_importance.png
+  - Fig7_high_demand_error.png
+  - Fig8_feature_scenario_comparison.png
+  - Fig9_weather_correlation.png
+  - Fig10_temporal_validation.png
+PS C:\Users\alexm>

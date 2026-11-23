@@ -1,0 +1,17 @@
+scenario,model,method,best_params,val_RMSE_MW
+A,Random Forest,RandomizedSearchCV,"{'n_estimators': 300, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_depth': None}",6.5402
+A,SVR,Grid search (C/epsilon/gamma),"{'C': 1, 'epsilon': 0.05, 'gamma': 'auto'}",9.0274
+A,XGBoost,RandomizedSearchCV,"{'subsample': 0.8, 'n_estimators': 300, 'max_depth': 8, 'learning_rate': 0.1, 'colsample_bytree': 1.0}",6.4228
+A,LSTM,Grid (units/dropout),"{'units': 64, 'dropout': 0.2, 'dense': 32}",6.0233
+B,Random Forest,RandomizedSearchCV,"{'n_estimators': 200, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_depth': 20}",4.4362
+B,SVR,Grid search (C/epsilon/gamma),"{'C': 10, 'epsilon': 0.05, 'gamma': 'scale'}",9.3298
+B,XGBoost,RandomizedSearchCV,"{'subsample': 0.8, 'n_estimators': 400, 'max_depth': 6, 'learning_rate': 0.1, 'colsample_bytree': 1.0}",3.9865
+B,LSTM,Grid (units/dropout),"{'units': 64, 'dropout': 0.2, 'dense': 32}",4.2701
+C,Random Forest,RandomizedSearchCV,"{'n_estimators': 300, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_depth': None}",6.7191
+C,SVR,Grid search (C/epsilon/gamma),"{'C': 1, 'epsilon': 0.05, 'gamma': 'scale'}",10.5726
+C,XGBoost,RandomizedSearchCV,"{'subsample': 1.0, 'n_estimators': 400, 'max_depth': 8, 'learning_rate': 0.05, 'colsample_bytree': 1.0}",6.6849
+C,LSTM,Grid (units/dropout),"{'units': 64, 'dropout': 0.2, 'dense': 32}",5.5573
+D,Random Forest,RandomizedSearchCV,"{'n_estimators': 200, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_depth': 20}",4.5078
+D,SVR,Grid search (C/epsilon/gamma),"{'C': 10, 'epsilon': 0.05, 'gamma': 'auto'}",10.6016
+D,XGBoost,RandomizedSearchCV,"{'subsample': 0.8, 'n_estimators': 400, 'max_depth': 6, 'learning_rate': 0.1, 'colsample_bytree': 1.0}",4.0614
+D,LSTM,Grid (units/dropout),"{'units': 64, 'dropout': 0.2, 'dense': 32}",5.0865

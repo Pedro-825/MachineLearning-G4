@@ -1,0 +1,2 @@
+model,MAE,RMSE,R2,MAPE,test_samples,description
+Persistence (naive),8.060569699737412,12.08691785763352,0.9581476787334258,3.8273778905163556,8759,"predict Load(t+1) = Load(t), test set (year 4)"

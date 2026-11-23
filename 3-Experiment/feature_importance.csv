@@ -1,0 +1,165 @@
+model,method,feature,importance,rank
+Random Forest,native,lag_0,0.9586882880428259,1
+Random Forest,native,hour_cos,0.012285482095788653,2
+Random Forest,native,hour_sin,0.007650214790943664,3
+Random Forest,native,hour,0.007166985420338603,4
+Random Forest,native,rolling_mean_24,0.004442983070141839,5
+Random Forest,native,lag_1,0.0020663241550335255,6
+Random Forest,native,lag_3,0.0014221183283226377,7
+Random Forest,native,day_of_year,0.0008520466485209123,8
+Random Forest,native,lag_2,0.0007821992233810649,9
+Random Forest,native,rolling_mean_3,0.00040735649932847564,10
+Random Forest,native,lag_168,0.00039807238925419644,11
+Random Forest,native,lag_24,0.00038863773720227205,12
+Random Forest,native,month_sin,0.00036595397280987017,13
+Random Forest,native,lag_48,0.0003335748107497747,14
+Random Forest,native,month,0.0002890155237372739,15
+Random Forest,native,month_cos,0.00022262324897324176,16
+Random Forest,native,load_type,0.0002104088400445878,17
+Random Forest,native,max_tem,0.00018962560533126942,18
+Random Forest,native,avr_tem,0.00015992651543115868,19
+Random Forest,native,avr_hum,0.00013747547328644085,20
+Random Forest,native,min_tem,0.00013219740962314643,21
+Random Forest,native,min_hum,0.00013019439936978128,22
+Random Forest,native,max_hum,0.00012941696103351704,23
+Random Forest,native,day_of_month,0.00012635677362892415,24
+Random Forest,native,wind_dir_09,0.00011632163694988278,25
+Random Forest,native,max_wind_dir,0.00011128149034948951,26
+Random Forest,native,wind_dir_15,0.00010954618234494386,27
+Random Forest,native,max_wind_speed,9.43760501606969e-05,28
+Random Forest,native,wind_dir_03,8.952843330394791e-05,29
+Random Forest,native,wind_speed_15,7.627236727155885e-05,30
+Random Forest,native,day_of_week,7.523687843755465e-05,31
+Random Forest,native,holiday,6.955495196330446e-05,32
+Random Forest,native,wind_speed_09,6.250454952014065e-05,33
+Random Forest,native,dow_sin,5.6482022696200156e-05,34
+Random Forest,native,dow_cos,5.545099653714885e-05,35
+Random Forest,native,wind_speed_03,4.237551199736483e-05,36
+Random Forest,native,total_precipitation,2.2127006832495778e-05,37
+Random Forest,native,rain,2.1840315970414764e-05,38
+Random Forest,native,is_weekend,1.5332827839981175e-05,39
+Random Forest,native,snow,2.874404916999679e-06,40
+Random Forest,native,snow_level,1.416437807108565e-06,41
+Random Forest,permutation,lag_0,59.05369909558808,1
+Random Forest,permutation,hour_cos,3.45208654743803,2
+Random Forest,permutation,hour_sin,2.419470179348628,3
+Random Forest,permutation,hour,1.7895091995628511,4
+Random Forest,permutation,lag_1,1.3942358406155728,5
+Random Forest,permutation,rolling_mean_24,1.0086846612698268,6
+Random Forest,permutation,lag_3,0.24039907976015568,7
+Random Forest,permutation,lag_168,0.1367830690936646,8
+Random Forest,permutation,lag_24,0.13510383410774968,9
+Random Forest,permutation,day_of_year,0.1258174033588338,10
+Random Forest,permutation,lag_48,0.11386684694308649,11
+Random Forest,permutation,month,0.09948802021473764,12
+Random Forest,permutation,month_sin,0.0829216029999353,13
+Random Forest,permutation,rolling_mean_3,0.03052164381096274,14
+Random Forest,permutation,month_cos,0.028583959898885868,15
+Random Forest,permutation,lag_2,0.025322083512459414,16
+Random Forest,permutation,load_type,0.022133134874682003,17
+Random Forest,permutation,max_tem,0.017589218524603732,18
+Random Forest,permutation,avr_tem,0.013739629584029345,19
+Random Forest,permutation,holiday,0.011279168141184837,20
+Random Forest,permutation,min_tem,0.0071302427629345464,21
+Random Forest,permutation,wind_speed_09,0.00474167888454744,22
+Random Forest,permutation,min_hum,0.004713952759502949,23
+Random Forest,permutation,avr_hum,0.004428173165186511,24
+Random Forest,permutation,dow_cos,0.00439463147886503,25
+Random Forest,permutation,dow_sin,0.002423065700358595,26
+Random Forest,permutation,total_precipitation,0.001550288642530351,27
+Random Forest,permutation,max_wind_speed,0.0015314451472225876,28
+Random Forest,permutation,day_of_month,0.0013715314103072806,29
+Random Forest,permutation,wind_speed_03,0.0005567492790634176,30
+Random Forest,permutation,snow,0.0002458637330285285,31
+Random Forest,permutation,is_weekend,-0.00014827874612928228,32
+Random Forest,permutation,snow_level,-0.00016296666747761535,33
+Random Forest,permutation,wind_dir_15,-0.0007179045302807552,34
+Random Forest,permutation,rain,-0.001180196903576114,35
+Random Forest,permutation,max_wind_dir,-0.0014770020597624444,36
+Random Forest,permutation,day_of_week,-0.0015862844517409158,37
+Random Forest,permutation,wind_dir_09,-0.0028834846288948056,38
+Random Forest,permutation,wind_speed_15,-0.00361820211852395,39
+Random Forest,permutation,max_hum,-0.0047095803364176625,40
+Random Forest,permutation,wind_dir_03,-0.005214111778687425,41
+XGBoost,native,lag_0,0.8622239232063293,1
+XGBoost,native,hour_cos,0.044765252619981766,2
+XGBoost,native,hour_sin,0.015804830938577652,3
+XGBoost,native,hour,0.01351885125041008,4
+XGBoost,native,rolling_mean_24,0.009046010673046112,5
+XGBoost,native,month_sin,0.008454382419586182,6
+XGBoost,native,month,0.0077844588086009026,7
+XGBoost,native,load_type,0.006179847288876772,8
+XGBoost,native,month_cos,0.004940677899867296,9
+XGBoost,native,lag_1,0.0034499801695346832,10
+XGBoost,native,day_of_year,0.0031061174813658,11
+XGBoost,native,holiday,0.0026667192578315735,12
+XGBoost,native,lag_3,0.002075404394418001,13
+XGBoost,native,lag_168,0.0017014587065204978,14
+XGBoost,native,day_of_week,0.001399370958097279,15
+XGBoost,native,max_tem,0.001056939479894936,16
+XGBoost,native,lag_2,0.0007651648484170437,17
+XGBoost,native,lag_24,0.0007243463769555092,18
+XGBoost,native,day_of_month,0.0006962393526919186,19
+XGBoost,native,avr_hum,0.0006763993878848851,20
+XGBoost,native,snow,0.0006744542624801397,21
+XGBoost,native,max_hum,0.0006639964412897825,22
+XGBoost,native,rain,0.000628731504548341,23
+XGBoost,native,lag_48,0.0006020963191986084,24
+XGBoost,native,rolling_mean_3,0.0005968138575553894,25
+XGBoost,native,avr_tem,0.0005069850594736636,26
+XGBoost,native,total_precipitation,0.00046962100896053016,27
+XGBoost,native,dow_cos,0.00044626390445046127,28
+XGBoost,native,max_wind_dir,0.0004459894262254238,29
+XGBoost,native,wind_speed_09,0.0004093513998668641,30
+XGBoost,native,max_wind_speed,0.0004079550562892109,31
+XGBoost,native,min_tem,0.00040695490315556526,32
+XGBoost,native,wind_dir_15,0.0004038630286231637,33
+XGBoost,native,wind_dir_09,0.00038852659054100513,34
+XGBoost,native,min_hum,0.0003808918409049511,35
+XGBoost,native,dow_sin,0.0003709349548444152,36
+XGBoost,native,wind_dir_03,0.0003455647674854845,37
+XGBoost,native,wind_speed_15,0.00033956667175516486,38
+XGBoost,native,wind_speed_03,0.00027275257161818445,39
+XGBoost,native,snow_level,0.00020224394393153489,40
+XGBoost,native,is_weekend,0.0,41
+XGBoost,permutation,lag_0,53.20288140578206,1
+XGBoost,permutation,hour_cos,3.3167664494222002,2
+XGBoost,permutation,hour_sin,2.6806470406290686,3
+XGBoost,permutation,rolling_mean_24,2.1201127941080733,4
+XGBoost,permutation,lag_1,2.021926109659831,5
+XGBoost,permutation,hour,1.9274157732137045,6
+XGBoost,permutation,lag_168,0.7202242166544596,7
+XGBoost,permutation,lag_48,0.542323833211263,8
+XGBoost,permutation,lag_24,0.46127227455647796,9
+XGBoost,permutation,day_of_year,0.4433978518066407,10
+XGBoost,permutation,month,0.282987208516439,11
+XGBoost,permutation,rolling_mean_3,0.25377348307291675,12
+XGBoost,permutation,lag_3,0.18201761952718107,13
+XGBoost,permutation,lag_2,0.10131938122558588,14
+XGBoost,permutation,max_tem,0.10035741851806664,15
+XGBoost,permutation,avr_tem,0.07611846744791677,16
+XGBoost,permutation,avr_hum,0.07542494952392587,17
+XGBoost,permutation,min_tem,0.07462422302246093,18
+XGBoost,permutation,month_sin,0.06392311962890637,19
+XGBoost,permutation,min_hum,0.0602574231974284,20
+XGBoost,permutation,day_of_week,0.05332996461995436,21
+XGBoost,permutation,load_type,0.053140572835286594,22
+XGBoost,permutation,max_hum,0.038254671610514324,23
+XGBoost,permutation,holiday,0.03273715584309929,24
+XGBoost,permutation,day_of_month,0.021686894144694203,25
+XGBoost,permutation,wind_dir_09,0.013597896870931247,26
+XGBoost,permutation,month_cos,0.011394667032877726,27
+XGBoost,permutation,max_wind_speed,0.008684691589355698,28
+XGBoost,permutation,dow_cos,0.00474130629475904,29
+XGBoost,permutation,max_wind_dir,0.002726166198730695,30
+XGBoost,permutation,wind_dir_03,0.002303148559570234,31
+XGBoost,permutation,dow_sin,0.001261345662434943,32
+XGBoost,permutation,wind_dir_15,0.00039976558431003005,33
+XGBoost,permutation,rain,5.849570719393959e-05,34
+XGBoost,permutation,snow_level,0.0,35
+XGBoost,permutation,is_weekend,0.0,36
+XGBoost,permutation,wind_speed_03,-0.0006554570109048363,37
+XGBoost,permutation,wind_speed_15,-0.0007545188191730556,38
+XGBoost,permutation,snow,-0.0020944810384114997,39
+XGBoost,permutation,wind_speed_09,-0.0028779288736978438,40
+XGBoost,permutation,total_precipitation,-0.006145499898274754,41
