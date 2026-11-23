@@ -1,5 +1,4 @@
-# Predicción de Demanda Eléctrica a Corto Plazo
-# ML & DL
+# Predicción de Demanda Eléctrica a Corto Plazo - ML & DL
 
 > **Evaluación comparativa de modelos de aprendizaje automático y aprendizaje profundo para la predicción de la demanda eléctrica a corto plazo: estudio de caso de Shahrekord**
 
